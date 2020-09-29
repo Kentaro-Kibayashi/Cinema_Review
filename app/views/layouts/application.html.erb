@@ -19,11 +19,21 @@
       </div>
     <% end %>
 
+    <%# フラッシュメッセージ %>
     <% if flash[:alert] %>
-      <div class="notification is-danger">
+      <div class="notification is-warning">
         <p class="alert"><%= alert %></p>
       </div>
     <% end %>
+
+    <%# トップページに戻ってくるリンク %>
+    <%= link_to root_path, class: "navbar-item" do %>
+      <h1 class="title is-4" style="font-family: cursive;">cinema_review</h1>
+    <% end %>
+
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+    <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
+    <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-light" %>
 
     <%= yield %>
   </body>
