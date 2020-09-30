@@ -21,6 +21,12 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
   end
 
+  def update
+    @review = Review.find(params[:id])
+    @review.update(review_params)
+    redirect_to review_path(@review)
+  end
+
   private
   def review_params
     params.require(:review).permit(:title, :body, :image)
