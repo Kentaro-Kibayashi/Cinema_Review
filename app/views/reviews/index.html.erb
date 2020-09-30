@@ -1,2 +1,11 @@
+<%# レビュー一覧画面 %>
 <h1>Reviews#index</h1>
 <p>Find me in app/views/reviews/index.html.erb</p>
+
+<% @reviews.each do |review| %>
+  <%= attachment_image_tag review, :image %>
+  <%= attachment_image_tag review.user, :profile_image, fallback: "no-image.png" %>
+  <%= review.user.username %>
+  <%# 日本時間で表示 %>
+  <%= review.updated_at.strftime("%Y-%m-%d %H:%M") %>
+<% end %>
