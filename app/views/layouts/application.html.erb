@@ -42,6 +42,12 @@
 
     <% if user_signed_in? %>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-item" >
+          <%= link_to "レビュー一覧", reviews_path, class: "navbar-item button is-warning is-light" %>
+        </div>
+        <div class="navbar-item" >
+          <%= link_to "新規投稿", new_review_path, class: "navbar-item button is-warning is-light" %>
+        </div>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
@@ -57,14 +63,16 @@
       </div>
     <% else %>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-item" >
+          <%= link_to "レビュー一覧", reviews_path, class: "navbar-item button is-warning is-light" %>
+        </div>
+        <div class="navbar-item">
+          <%# 一覧なので、user"s"_path" %>
+          <%= link_to "シネマレビュアー一覧", users_path, class: "navbar-item button is-warning is-light" %>
+        </div>
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-              <p class="control">
-                
-                <%# 一覧なので、user"s"_path" %>
-                <%= link_to "シネマレビュアー一覧", users_path, class: "button is-warning is-light" %>
-              </p>
               <p class="control">
                 <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
               </p>
