@@ -3,11 +3,15 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-      <% if @user.id == current_user.id %>
-        マイページ
-      <% else %>
-        <%= @user.username %>さんのページ
-      <% end %>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            マイページ
+          <% else %>
+            <%= @user.username %>さんのページ
+          <% end %>
+        <% else %>
+          <%= @user.username %>さんのページ
+        <% end %>
       </h1>
     </div>
   </div>
@@ -30,14 +34,16 @@
                   <strong><%= @user.username %></strong>
                 </td>
 
-                <%# 一致する場合のみメールアドレス表示 %>
-                <% if @user.id == current_user.id %>
-                <td class="is-size-4">
-                  <%= @user.email %>
-                </td>
-                <td>
-                  <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
-                </td>
+                <% if user_signed_in? %>
+                  <%# 一致する場合のみメールアドレス表示 %>
+                  <% if @user.id == current_user.id %>
+                  <td class="is-size-4">
+                    <%= @user.email %>
+                  </td>
+                  <td>
+                    <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
+                  </td>
+                  <% end %>
                 <% end %>
               </tr>
             </table>
@@ -60,7 +66,7 @@
   <div class="container">
     <div class="columns is-multiline">
       <%# 一覧なのでeach文を使う %>
-      <% @user.reviews.each do |review| %>
+      <% @user.reviews.order(created_at: :desc).each do |review| %>
         <div class="column is-4">
           <div class="card">
             <div class="card-image">
@@ -82,23 +88,25 @@
                     このレビューを見る
                   <% end %>
 
-                  <% if @user.id == current_user.id %>
-                    <%= link_to edit_review_path(review), class: "panel-block" do %>
-                      <span class="panel-icon">
-                        <i class="fas fa-edit"></i>
-                      </span>
-                      このレビューを編集する
-                    <% end %>
+                  <% if user_signed_in? %>
+                    <% if @user.id == current_user.id %>
+                      <%= link_to edit_review_path(review), class: "panel-block" do %>
+                        <span class="panel-icon">
+                          <i class="fas fa-edit"></i>
+                        </span>
+                        このレビューを編集する
+                      <% end %>
 
-                    <%# 間違えて削除してしまわないよう、ポップアップメッセージ %>
-                    <%= link_to review_path(review), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
-                      <span class="panel-icon">
-                        <i class="fas fa-trash"></i>
-                      </span>
-                      このレビューを削除する
-                    <% end %>
-
+                      <%# 間違えて削除してしまわないよう、ポップアップメッセージ %>
+                      <%= link_to review_path(review), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                        <span class="panel-icon">
+                          <i class="fas fa-trash"></i>
+                        </span>
+                        このレビューを削除する
+                      <% end %>
                   <% end %>
+
+                    <% end %>
                 </div>
               </div>
               <div class="content">
