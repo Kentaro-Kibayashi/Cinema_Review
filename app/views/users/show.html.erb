@@ -52,4 +52,57 @@
 </section>
 
 
-レビューの情報は後ほど実装
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <%# 一覧なのでeach文を使う %>
+      <% @user.reviews.each do |review| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <%# 4by3 → 1by1 %>
+              <figure class="image is-1by1">
+                <%= link_to review_path(review) do %>
+                  <%= attachment_image_tag review, :image %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <%= link_to review_path(review), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    このレビューを見る
+                  <% end %>
+
+                  <% if @user.id == current_user.id %>
+                    <%= link_to edit_review_path(review), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      このレビューを編集する
+                    <% end %>
+
+                    <%# 間違えて削除してしまわないよう、ポップアップメッセージ %>
+                    <%= link_to review_path(review), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-trash"></i>
+                      </span>
+                      このレビューを削除する
+                    <% end %>
+
+                  <% end %>
+                </div>
+              </div>
+              <div class="content">
+                <time><%= review.updated_at.strftime("%Y-%m-%d %H:%M") %></time>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
