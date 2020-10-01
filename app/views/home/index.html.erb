@@ -9,12 +9,19 @@
       </div>
 
       <div class="columns is-centered">
-        <div class="column is-5">
-          <br>
-          <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-fullwidth" %>
-          <br>
-          <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-fullwidth" %>
-        </div>
+        <% if user_signed_in? %>
+          <div class="column is-5">
+            <br>        
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか？"}, class: "button is-warning is-fullwidth" %>
+          </div>
+        <% else %>
+          <div class="column is-5">
+            <br>
+            <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-fullwidth" %>
+            <br>
+            <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-fullwidth" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </article>
