@@ -16,7 +16,8 @@
         <div class="column is-4">
           <div class="card">
             <div class="card-image">
-              <figure class="image is-4by3">
+              <%# 4by3 → 1by1 %>
+              <figure class="image is-1by1">
                 <%= link_to review_path(review) do %>
                   <%= attachment_image_tag review, :image %>
                 <% end %>
