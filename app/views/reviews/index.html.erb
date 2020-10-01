@@ -1,11 +1,47 @@
 <%# レビュー一覧画面 %>
-<h1>Reviews#index</h1>
-<p>Find me in app/views/reviews/index.html.erb</p>
+<section class="hero is-success is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        レビュー一覧
+      </h1>
+    </div>
+  </div>
+</section>
 
-<% @reviews.each do |review| %>
-  <%= attachment_image_tag review, :image %>
-  <%= attachment_image_tag review.user, :profile_image, fallback: "no-image.png" %>
-  <%= review.user.username %>
-  <%# 日本時間で表示 %>
-  <%= review.updated_at.strftime("%Y-%m-%d %H:%M") %>
-<% end %>
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @reviews.each do |review| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to review_path(review) do %>
+                  <%= attachment_image_tag review, :image %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <%= attachment_image_tag review.user, :profile_image, fallback: "no-image.png" %>
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <div class="title"><%= link_to review.user.username, user_path(review.user) %></div>
+                </div>
+              </div>
+
+                <div class="content">
+                  <%# 日本時間で表示 %>
+                  <time><%= review.updated_at.strftime("%Y-%m-%d %H:%M") %></time>
+                </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
