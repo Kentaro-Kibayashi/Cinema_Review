@@ -38,8 +38,20 @@
                 <div class="content">
                   <div class="title is-4">『<%= review.title %>』</div>
 
-                  <%# 日本時間で表示 %>
-                  <time><%= review.updated_at.strftime("%Y-%m-%d %H:%M") %></time>
+                        <%# 日本時間で表示 %>
+                        <time><%= review.updated_at.strftime("%Y-%m-%d %H:%M") %></time>
+
+                        <% if current_user.already_favorited?(review) %>
+                          <%= link_to review_favorites_path(review), method: :delete do %>
+                            <i class="fas fa-heart"></i>
+                          <% end %>
+                        <% else %>
+                          <%= link_to review_favorites_path(review), method: :post do %>
+                            <i class="far fa-heart"></i>
+                          <% end %>
+                        <% end %>
+                        <%= review.favorites.count %>
+
                 </div>
             </div>
           </div>
