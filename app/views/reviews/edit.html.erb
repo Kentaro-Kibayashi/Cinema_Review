@@ -1,4 +1,7 @@
 <%# 投稿編集画面 %>
+
+<%= render 'errors', recipe: @recipe %>
+
 <section class="hero is-link is-bold">
   <div class="hero-body">
     <div class="container">
@@ -8,18 +11,6 @@
     </div>
   </div>
 </section>
-
-<% if @review.errors.any? %>
-  <div class="notification is-danger">
-        <%# pluralizeメソッド : 複数形 変換処理 %>
-    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
-    <ul>
-      <% @review.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <section class="section">
   <div class="container">
@@ -41,7 +32,7 @@
             <%= f.attachment_field :image, class: "input" %>
           </div>
           
-            <%= f.submit '更新', class: "button is-primary" %>
+          <%= f.submit '更新', class: "button is-primary" %>
 
         <% end %>
       </div>

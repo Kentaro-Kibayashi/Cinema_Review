@@ -1,0 +1,12 @@
+<%# validationにかかった場合のポップアップ %>
+<% if @review.errors.any? %>
+  <div class="notification is-danger">
+        <%# pluralizeメソッド : 複数形 変換処理 %>
+    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
+    <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
