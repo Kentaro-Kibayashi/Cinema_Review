@@ -1,5 +1,5 @@
 <%# レビュー詳細画面 %>
-<section class="hero is-success is-bold">
+<section class="hero is-link is-bold">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -33,13 +33,41 @@
                 </tr>
                 <tr>
                   <%# body内容の改行を表示させる %>
-                  <td><%= simple_format @review.body %></td>
+                  <td><br><%= simple_format @review.body %><br></td>
+                </tr>
+                <tr>
+                  <td>
+                    <% if user_signed_in? %>
+                      <% if current_user.already_favorited?(@review) %>
+                        <%= link_to review_favorites_path(@review), method: :delete do %>
+                        <i class="fas fa-heart">いいね！</i>
+                        <% end %>
+                      <% else %>
+                        <%= link_to review_favorites_path(@review), method: :create do %>
+                          <i class="far fa-heart">いいね！</i>
+                        <% end %>
+                      <% end %>
+                      <%= @review.favorites.count %>件
+                    <% else %>
+                      <i class="far fa-heart">いいね！</i>
+                      <%= @review.favorites.count %>件
+                    <% end %>
+                    <div class="level-right">
+                      <time><%= @review.updated_at.strftime("%Y-%m-%d %H:%M") %></time>
+                    </div>
+                  </td>
                 </tr>
               </table>
-              <% if @review.user.id == current_user.id %>
-                <div class="level-right">
-                  <%= link_to "編集", edit_review_path(@review), class: "button is-primary" %>
-                </div>
+
+              <% if user_signed_in? %>
+                <% if @review.user.id == current_user.id %>
+                  <div class="level-right">
+                    <div class="buttons">
+                      <%= link_to "編集", edit_review_path(@review), class: "button is-primary" %>
+                      <%= link_to "削除", review_path(@review), method: :delete, data: {confirm: "削除しますか？"}, class: "button is-primary" %>
+                    </div>
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -47,7 +75,7 @@
       </div>
 
       <div class="column is-4">
-        <article class="panel is-link">
+        <article class="panel is-primary">
           <p class="panel-heading">
             By <%= @review.user.username %>
           </p>
