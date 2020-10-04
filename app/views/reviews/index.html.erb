@@ -40,11 +40,11 @@
                   <% if user_signed_in? %>
                     <% if current_user.already_favorited?(review) %>
                       <%= link_to review_favorites_path(review), method: :delete do %>
-                        <i class="fas fa-heart">いいね！</i>
+                        <i class="fas fa-heart"> いいね！</i>
                       <% end %>
                     <% else %>
                       <%= link_to review_favorites_path(review), method: :post do %>
-                        <i class="far fa-heart">いいね！</i>
+                        <i class="far fa-heart"> いいね！</i>
                       <% end %>
                     <% end %>
                     <%= review.favorites.count %>件
