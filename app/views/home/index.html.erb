@@ -23,7 +23,7 @@
         <% else %>
           <div class="column is-5">
             <br>
-            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, class: "button is-warning is-fullwidth", method: :post %>
+            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, class: "button is-warning is-fullwidth", method: :post, data: {confirm: "ゲストユーザーとしてログインしますか？"} %>
             <br>
             <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-fullwidth" %>
             <br>

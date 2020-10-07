@@ -77,7 +77,7 @@
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "button is-warning is-light", method: :post %>
+                <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "button is-warning is-light", method: :post, data: {confirm: "ゲストユーザーとしてログインしますか？"} %>
               </p>
               <p class="control">
                 <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
