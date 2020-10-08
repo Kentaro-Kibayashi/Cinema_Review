@@ -62,3 +62,6 @@ gem "bulma-rails"
 group :production do
   gem 'pg'
 end
+
+gem 'fog-aws'
+gem 'carrierwave'
