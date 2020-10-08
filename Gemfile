@@ -64,6 +64,5 @@ group :production do
   gem 'pg'
 end
 
-gem 'carrierwave'
 gem 'fog-aws'
 gem 'dotenv-rails'

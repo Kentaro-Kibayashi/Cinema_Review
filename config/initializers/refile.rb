@@ -2,8 +2,8 @@ require 'refile/s3'
 
 if Rails.env.production? 
   aws = {
-    access_key_id: ENV['AWS_ACCESS_KEY_ID'], # アクセスキーID
-    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], # シークレットアクセスキー
+    access_key_id: ENV['AWS_ACCESS_KEY_ID'], 
+    secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], 
     region: 'ap-northeast-1',
     bucket: 'cinema-review-s3',
   }
