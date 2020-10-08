@@ -1,4 +1,4 @@
-# 概要
+## 概要
 
 アプリ名: Cinema Review
 
