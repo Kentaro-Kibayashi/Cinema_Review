@@ -9,30 +9,59 @@ Heroku: https://cinema-review-app.herokuapp.com/
 本アプリは、鑑賞済みの映画のレビューを記録することを目的としたSNSアプリです。映画をただ観るだけではなく、観た内容や感想を記録することでさらに映画鑑賞が楽しいものになるのではないかと考え開発をしました。
 また視覚的にも楽しめるように、投稿した映画のレビューをタイムラインにおいて一目で確認できるようなレイアウトにしています。
 
+<img src="https://user-images.githubusercontent.com/70659494/95469060-2688d200-09ba-11eb-9860-90947a8b0382.png" height="500px" width="400px">
 
+## 機能一覧
 
+* ユーザー管理機能
+  * 新規ユーザー登録
+  * ログイン・ログアウト
+  * ゲストログイン
+  * プロフィール編集
+  * ユーザー一覧表示
+  
+* レビュー管理機能
 
+  * 新規レビュー投稿
+  * レビュー編集
+  * レビュー削除
+  * レビュー詳細表示
+  * レビュー一覧表示
+  
+* いいね機能
+  * いいね登録・解除
 
+## 使用技術一覧
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 言語
+  * Ruby (2.6.3)
+  
+* フレームワーク
+  * Ruby on Rails (6.0.3)
+  
+* データベース
+  * PostgreSQL (12.4)
+  
+* フロントエンド
+  * HTML
+  * SCSS
+  * Bulma
+  * Font Awesome
+  
+* 開発環境
+  * ローカル(Mac)
+  * Visual Studio Code
+  
+* 本番環境
+  * Heroku
+  * AWS (S3: 画像管理)
+  
+* バージョン管理
+  * Git
+  * GitHub
 
-Things you may want to cover:
+## 今後追加予定の機能
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* レスポンシブデザイン
+* テストコード(RSpec)
+* Docker
