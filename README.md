@@ -63,5 +63,6 @@ Heroku: https://cinema-review-app.herokuapp.com/
 ## 今後追加予定の機能
 
 * レスポンシブデザイン
+* 非同期通信(Ajax)
 * テストコード(RSpec)
 * Docker
